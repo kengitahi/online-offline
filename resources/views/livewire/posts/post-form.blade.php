@@ -69,32 +69,34 @@
 
     <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Create a New Post</h2>
 
-    <!-- Toast to show status -->
-    <div
-        class="mb-4 p-4 rounded-md shadow"
-        :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-        x-show="showMessage"
-        x-transition.duration.500ms
-        x-cloak
-    >
-        <span
-            class="font-semibold"
-            x-text="messageContent"
-        ></span>
-    </div>
+    <div class="fixed top-4 right-4 space-y-2 z-50">
+        <!-- Toast to show status -->
+        <div
+            class="mb-4 p-4 rounded-md shadow"
+            :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
+            x-show="showMessage"
+            x-transition.duration.500ms
+            x-cloak
+        >
+            <span
+                class="font-semibold"
+                x-text="messageContent"
+            ></span>
+        </div>
 
-    <!-- Toasts to show connection status message -->
-    <div
-        class="mb-6 p-4 rounded-md shadow-sm transition-colors duration-300"
-        :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-        x-show="showStatusMessage"
-        x-transition.duration.500ms
-        x-cloak
-    >
-        <span
-            class="font-semibold text-center block"
-            x-text="statusMessage"
-        ></span>
+        <!-- Toasts to show connection status message -->
+        <div
+            class="mb-6 p-4 rounded-md shadow-sm transition-colors duration-300"
+            :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
+            x-show="showStatusMessage"
+            x-transition.duration.500ms
+            x-cloak
+        >
+            <span
+                class="font-semibold text-center block"
+                x-text="statusMessage"
+            ></span>
+        </div>
     </div>
 
     <!-- The form for creating a new post. -->
