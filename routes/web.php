@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Posts\CreatePost;
+use App\Livewire\Posts\PostForm;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +10,8 @@ Route::get('/', function () {
 });
 
 // Livewire
-Route::get('/create-post', CreatePost::class)->name('create-post');
+// Route::get('/create-post', CreatePost::class)->name('create-post');
+Route::get('/create-post', PostForm::class)->name('create-post');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -18,10 +18,9 @@ class PostForm extends Component
     #[Validate('required|string')]
     public $content = '';
 
-    public function mount()
-    {
-        $this->updateStatus();
-    }
+    public $isOnline = 'true';
+
+    public function mount() {}
 
     public function savePost()
     {
@@ -53,7 +52,7 @@ class PostForm extends Component
     {
         Log::info('Synchronization started.');
 
-        if (! $this->isOnline()) {
+        if (! $this->isOnline) {
             $this->statusMessage = 'Cannot sync: You are offline.';
 
             return;
@@ -115,22 +114,9 @@ class PostForm extends Component
         }
     }
 
-    private function isOnline()
-    {
-        try {
-            // Attempt to get a PDO instance for the MySQL connection.
-            // If this fails, we are likely offline.
-            DB::connection('mysql')->getPdo();
-
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
     public function updateStatus()
     {
-        if ($this->isOnline()) {
+        if ($this->isOnline) {
             $this->statusMessage = 'Status: Online. Ready to sync.';
         } else {
             $this->statusMessage = 'Status: Offline. Saving locally.';
