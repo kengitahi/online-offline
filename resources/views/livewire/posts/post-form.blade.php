@@ -3,6 +3,8 @@
     x-data="toastHandler()"
     wire:ignore.self
     x-init="
+        setTimeout(() => { showStatusMessage = false }, 3000);
+
         const showTemporaryMessage = (message) => {
             messageContent = message;
             showMessage = true;
@@ -53,7 +55,8 @@
     <div
         class="mb-4 p-4 rounded-md shadow"
         :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-        x-show.transition.duration.500ms="showMessage"
+        x-show="showMessage"
+        x-transition.duration.500ms
         x-cloak
     >
         <span
@@ -62,17 +65,18 @@
         ></span>
     </div>
 
-    {{-- <!-- Livewire's reactive status message -->
+    <!-- Toasts to show connection status message -->
     <div
         class="mb-6 p-4 rounded-md shadow-sm transition-colors duration-300"
         :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-        x-show="!showMessage"
+        x-show="showStatusMessage"
+        x-transition.duration.500ms
     >
         <span
             class="font-semibold text-center block"
             x-text="statusMessage"
         ></span>
-    </div> --}}
+    </div>
 
     <!-- The form for creating a new post. -->
     <form
@@ -172,7 +176,9 @@
         return {
             isOnline: navigator.onLine,
             showMessage: false,
+            showStatusMessage: true,
             messageContent: '',
+            statusMessage: '',
             showTemporaryMessage(message) {
                 this.messageContent = message
                 this.showMessage = true
