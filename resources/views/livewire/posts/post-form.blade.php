@@ -26,8 +26,26 @@
         $wire.updateStatus();
 
         // Update Alpine.js `statusMessage`
-        $watch('$wire.statusMessage', (newVal) => {
-            statusMessage = newVal;
+        $watch('statusMessage', (newVal) => {
+            if (newVal) {
+                const showNow = () => {
+                    showStatusMessage = true;
+
+                    if (window._statusTimer) clearTimeout(window._statusTimer);
+                    window._statusTimer = setTimeout(() => {
+                        showStatusMessage = false;
+                    }, 3000);
+                };
+                
+                //If another toast is showing
+                if (showMessage) {
+                    // wait until the toast disappears
+                    setTimeout(showNow, 3000);
+                } else {
+                    // show immediately
+                    showNow();
+                }
+            }
         });
 
         // Event listener for when the app goes offline.
@@ -71,6 +89,7 @@
         :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
         x-show="showStatusMessage"
         x-transition.duration.500ms
+        x-cloak
     >
         <span
             class="font-semibold text-center block"
@@ -178,7 +197,7 @@
             showMessage: false,
             showStatusMessage: true,
             messageContent: '',
-            statusMessage: '',
+            statusMessage: @entangle('statusMessage'),
             showTemporaryMessage(message) {
                 this.messageContent = message
                 this.showMessage = true
