@@ -17,6 +17,8 @@
         
         // Initial status check
         $wire.set('isOnline', isOnline);
+
+        //Set initial status
         $wire.updateStatus();
 
         // Update Alpine.js `statusMessage`
