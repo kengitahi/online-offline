@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Posts\CreatePost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Livewire
+Route::get('/create-post', CreatePost::class)->name('create-post');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
