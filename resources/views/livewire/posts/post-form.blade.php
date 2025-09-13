@@ -1,18 +1,20 @@
 <div
     class="p-8 max-w-lg mx-auto bg-gray-100 rounded-xl shadow-lg my-12"
-    x-data="{ 
-        isOnline: window.navigator.onLine, 
-        showMessage: false, 
-        messageContent: '',
-        statusMessage: @js($statusMessage)
-     }"
+    x-data="toastHandler()"
+    wire:ignore.self
     x-init="
         const showTemporaryMessage = (message) => {
             messageContent = message;
             showMessage = true;
-            setTimeout(() => {
+            
+            // clear any old timers first
+            if (window._toastTimer) {
+                clearTimeout(window._toastTimer);
+            }
+
+            window._toastTimer = setTimeout(() => {
                 showMessage = false;
-            }, 3000); // Message disappears after 3 seconds
+            }, 3000);
         };
         
         // Initial status check
@@ -47,7 +49,7 @@
 
     <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Create a New Post</h2>
 
-    <!-- A temporary message that displays and then fades away -->
+    <!-- Toast to show status -->
     <div
         class="mb-4 p-4 rounded-md shadow"
         :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
@@ -60,7 +62,7 @@
         ></span>
     </div>
 
-    <!-- Livewire's reactive status message -->
+    {{-- <!-- Livewire's reactive status message -->
     <div
         class="mb-6 p-4 rounded-md shadow-sm transition-colors duration-300"
         :class="isOnline ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
@@ -70,7 +72,7 @@
             class="font-semibold text-center block"
             x-text="statusMessage"
         ></span>
-    </div>
+    </div> --}}
 
     <!-- The form for creating a new post. -->
     <form
@@ -163,5 +165,20 @@
             </button>
         </div>
     </form>
-
 </div>
+
+<script>
+    function toastHandler() {
+        return {
+            isOnline: navigator.onLine,
+            showMessage: false,
+            messageContent: '',
+            showTemporaryMessage(message) {
+                this.messageContent = message
+                this.showMessage = true
+                if (this._timer) clearTimeout(this._timer)
+                this._timer = setTimeout(() => { this.showMessage = false }, 3000)
+            }
+        }
+    }
+</script>
