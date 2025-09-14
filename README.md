@@ -24,5 +24,5 @@ You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you
 
 Livewire also has extensive [documentation](https://livewire.laravel.com/docs/quickstart) that you can use to get started and build full apps.
 
-You can access the Alpine.hs cocumentation [here](https://alpinejs.dev/start-here) to larn about it.
+You can access the Alpine.js cocumentation [here](https://alpinejs.dev/start-here) to learn it.
 
