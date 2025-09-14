@@ -16,13 +16,13 @@ These messages also alert them when they go offline and came back online, as wel
 
 ## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Laravel has the most extensive and thorough <a href="https://laravel.com/docs" target="_blank">documentation</a> and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+You may also try the <a href="https://bootcamp.laravel.com">Laravel Bootcamp</a>, where you will be guided through building a modern Laravel application from scratch.
 
 ## Learning Livewire and Alpine JS
 
-Livewire also has extensive [documentation](https://livewire.laravel.com/docs/quickstart) that you can use to get started and build full apps.
+Livewire also has extensive <a href="https://livewire.laravel.com/docs/quickstart">documentation</a> that you can use to get started and build full apps.
 
-You can access the Alpine.js cocumentation [here](https://alpinejs.dev/start-here) to learn it.
+You can access the Alpine.js documentation <a href="https://livewire.laravel.com/docs/"> here</a> to learn it.
 
